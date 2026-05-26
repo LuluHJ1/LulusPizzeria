@@ -1,5 +1,5 @@
 package org.example;
 
-public enum PizzaSize {
+public enum Size {
     PERSONAL,MEDIUM, LARGE
 }
