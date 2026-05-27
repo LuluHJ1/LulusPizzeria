@@ -1,15 +1,24 @@
 package org.example;
 
 public class Drink {
-    private String name;
-    private double price;
+    private String flavor;
+    private DrinkSize drinkSize;
 
-    public Drink(String name,double price) {
-        this.name = name;
-        this.price = price;
+    public Drink(String flavor, DrinkSize size) {
+        this.flavor = flavor;
+        this.drinkSize = size;
     }
-    @Override
-    public double calculatePrice() {
-        return price;
+    public double getPrice() {
+
+        switch (drinkSize) {
+            case SMALL:
+                return 2.00;
+
+            case MEDIUM:
+                return 2.50;
+            case LARGE:
+                return 3.00;
+        }
+        return 0;
     }
 }
