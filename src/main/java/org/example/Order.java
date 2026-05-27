@@ -10,10 +10,12 @@ public class Order {
     private int garlicKnots = 0;
 
     public void addPizza(Pizza pizza) {
-        pizzas.add(pizza);
+
+        //  NEW CODE LEARNED ADDING 0 ADDS TO TOP
+        pizzas.add(0, pizza);
     }
     public void addDrink (Drink drink) {
-        drinks.add(drink);
+        drinks.add(0, drink);
     }
     public void addGarlicKnots (int quantity) {
         garlicKnots += quantity;
@@ -46,16 +48,19 @@ public class Order {
         receipt += "==== ORDER RECEIPT ====\n\n";
 
         for(Pizza p : pizzas) {
-            receipt += p.toString() + "\n\n";
+            receipt += p + "\n\n";
         }
         for(Drink d : drinks) {
-            receipt += d.toString() + "\n\n";
+            receipt += d + "\n\n";
         }
         if (garlicKnots > 0) {
             receipt += "Garlic Knots x" + garlicKnots;
-            receipt += " = $" + (garlicKnots * 1.50) + "\n";
+            receipt += " = $" +
+                    String.format("%.2f", garlicKnots * 1.50)
+                    + "\n";
         }
-        receipt += "\nTOTAL: $" + calculateTotal();
+        receipt += "\nTOTAL: $" +
+                String.format("%.2f", calculateTotal());
 
         return receipt;
     }

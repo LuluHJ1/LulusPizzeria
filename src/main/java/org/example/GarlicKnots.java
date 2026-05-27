@@ -1,15 +1,26 @@
 package org.example;
 
 public class GarlicKnots {
-    private String name;
-    private double price;
 
-    public GarlicKnots(String name,double price) {
-        this.name = name;
-        this.price = price;
+    private int quantity;
+    private final double price = 1.50;
+
+    public GarlicKnots(int quantity) {
+        this.quantity = quantity;
     }
-    @Override
+    public int getQuantity() {
+        return quantity;
+    }
+
     public double calculatePrice() {
-        return price;
+        return quantity * price;
+    }
+
+    @Override
+    public String toString () {
+        return "Garlic Knots x" +
+                quantity +
+                "-$" +
+                calculatePrice();
     }
 }

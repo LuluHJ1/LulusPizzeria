@@ -21,4 +21,8 @@ public class Drink {
         }
         return 0;
     }
+    @Override
+    public String toString() {
+        return drinkSize + " " + flavor + " - $" + getPrice();
+    }
 }
