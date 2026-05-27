@@ -1,6 +1,6 @@
 package org.example;
 
-public class Drink implements MenuItem{
+public class Drink {
     private String name;
     private double price;
 

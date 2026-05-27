@@ -8,7 +8,7 @@ public class Pizza {
     private boolean stuffedCrust;
     private List<Topping> toppings = new ArrayList<>();
 
-    public Pizza(Size size, boolean StuffedCrust) {
+    public Pizza(Size size, boolean stuffedCrust) {
         this.size = size;
         this.stuffedCrust = stuffedCrust;
 
@@ -34,5 +34,26 @@ public class Pizza {
            total += PriceHelper.getToppingPrice(t, size);
             }
         return total;
+    }
+    @Override
+    public String toString() {
+        String result = "";
+        result += size + " Pizza\n";
+
+        if (stuffedCrust) {
+            result += "Stuffed Crust\n";
+        }
+        result += "Toppings:\n";
+
+        for (Topping  t : toppings) {
+            result += "- " + t.getName();
+
+            if (t.isExtra()) {
+                result += "(extra)";
+            }
+            result += "\n";
+        }
+            result += "Price: $" + calculatePrice();
+            return result;
     }
 }
