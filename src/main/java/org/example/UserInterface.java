@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class UserInterface {
     Scanner scanner = new Scanner(System.in);
-    public void display() {
 
+    public void display() {
 
         boolean ordering = true;
         while (ordering) {
@@ -40,6 +40,7 @@ public class UserInterface {
             }
         }
     }
+
     public void showOrderScreen(Order order) {
         boolean ordering = true;
 
@@ -88,6 +89,7 @@ public class UserInterface {
             }
         }
     }
+
     public Pizza buildPizza() {
 
         System.out.println("\nSelect Pizza Size");
@@ -134,9 +136,9 @@ public class UserInterface {
             System.out.println("Invalid input.");
             scanner.nextLine();
         }
-        Pizza pizza = new Pizza (size, stuffedCrust);
+        Pizza pizza = new Pizza(size, stuffedCrust);
         boolean adding = true;
-        while(adding) {
+        while (adding) {
             System.out.println("\nTOPPINGS: ");
             System.out.println("==========================");
             System.out.println("Meat: ");
@@ -163,9 +165,9 @@ public class UserInterface {
             System.out.println();
             System.out.println("Enter Number: ");
 
-            // KEEP ADDING TRY CATCHES
             try {
                 int toppingChoice = scanner.nextInt();
+                scanner.nextLine();
 
                 switch (toppingChoice) {
                     case 1:
@@ -268,17 +270,37 @@ public class UserInterface {
                 scanner.nextLine();
             }
         }
-            return pizza;
+        return pizza;
     }
-    public boolean askExtra() {
-        System.out.println("Add extra of this topping?");
-        System.out.println("==========================");
-        System.out.println("1) YES");
-        System.out.println("2) NO");
-        System.out.println("Enter Number");
 
-        return scanner.nextInt() == 1;
+    public boolean askExtra() {
+
+        while (true) {
+            System.out.println("Add extra of this topping?");
+            System.out.println("==========================");
+            System.out.println("1) YES");
+            System.out.println("2) NO");
+            System.out.println("Enter Number");
+
+            try {
+                int choice = scanner.nextInt();
+                scanner.nextLine();
+
+                if (choice == 1) {
+                    return true;
+                } else if (choice == 2) {
+                    return false;
+                } else {
+                    System.out.println("Invalid option.");
+                }
+
+            } catch (Exception e) {
+                System.out.println("Invalid input");
+                scanner.nextLine();
+            }
+        }
     }
+
     public Drink buildDrink() {
         System.out.println("\nSelect Drink Size");
         System.out.println("==========================");
@@ -286,33 +308,50 @@ public class UserInterface {
         System.out.println("2) Medium");
         System.out.println("3) Large");
 
-        int choice = scanner.nextInt();
+        try {
 
-        DrinkSize size = switch (choice) {
-            case 1 -> DrinkSize.SMALL;
-            case 2 -> DrinkSize.MEDIUM;
-            case 3 -> DrinkSize.LARGE;
-            default -> DrinkSize.LARGE;
-        };
+            int choice = scanner.nextInt();
+            scanner.nextLine();
 
-        scanner.nextLine();
-        System.out.println("Enter flavor: ");
-        String flavor = scanner.nextLine();
+            DrinkSize size = switch (choice) {
+                case 1 -> DrinkSize.SMALL;
+                case 2 -> DrinkSize.MEDIUM;
+                case 3 -> DrinkSize.LARGE;
+                default -> DrinkSize.LARGE;
+            };
 
-        return new Drink(flavor, size);
+            scanner.nextLine();
+            System.out.println("Enter flavor: ");
+            String flavor = scanner.nextLine();
 
+            return new Drink(flavor, size);
+
+        } catch (Exception e) {
+            System.out.println("Invalid input. Defaulting to large.");
+            scanner.nextLine();
+            return new Drink("Unknown flavor", DrinkSize.LARGE);
+        }
     }
-    public void addGarlicKnots(Order order) {
-        System.out.println("GARLIC KNOTS");
-        System.out.println("==========================");
-        System.out.println("How many orders of garlic knots?");
+        public void addGarlicKnots(Order order) {
+            System.out.println("GARLIC KNOTS");
+            System.out.println("==========================");
+            System.out.println("How many orders of garlic knots?");
 
-        int quantity = scanner.nextInt();
+            try {
+                int quantity = scanner.nextInt();
+                scanner.nextLine();
 
-        order.addGarlicKnots(quantity);
-
-    }
-    public void checkout(Order order) {
+                if(quantity > 0) {
+                    order.addGarlicKnots(quantity);
+                }else {
+                    System.out.println("Quantity must be positive");
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid input.");
+                scanner.nextLine();
+            }
+        }
+            public void checkout(Order order) {
 
         boolean checkingOut = true;
 
@@ -325,6 +364,7 @@ public class UserInterface {
             System.out.println("2) Cancel");
 
             int choice = scanner.nextInt();
+            scanner.nextLine();
 
             if (choice == 1) {
                 ReceiptManager.saveReceipt(order);
