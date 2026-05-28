@@ -1,0 +1,18 @@
+==== ORDER RECEIPT ====
+
+PERSONAL Pizza
+Stuffed Crust
+Toppings:
+- Pepperoni
+- Mozzarella
+- Marinara
+- Marinara
+- Mushrooms
+- Red Pepper Flakes
+Price: $10.25
+
+SMALL coke - $2.0
+
+Garlic Knots x1 = $1.50
+
+TOTAL: $13.75
