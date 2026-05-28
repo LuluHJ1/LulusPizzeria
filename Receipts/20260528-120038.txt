@@ -1,0 +1,13 @@
+==== ORDER RECEIPT ====
+
+PERSONAL Pizza
+Stuffed Crust
+Toppings:
+- Pepperoni
+Price: $9.5
+
+SMALL coke - $2.0
+
+Garlic Knots x1 = $1.50
+
+TOTAL: $13.00
