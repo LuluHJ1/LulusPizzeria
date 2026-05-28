@@ -8,30 +8,35 @@ public class UserInterface {
 
 
         boolean ordering = true;
-        while(ordering) {
+        while (ordering) {
             System.out.println("WELCOME TO LULU'S PIZZERIA");
             System.out.println("==========================");
             System.out.println("1) New Order");
             System.out.println("0) Exit");
             System.out.println("Enter Number: ");
 
-            int choice = scanner.nextInt();
+            try {
+                int choice = scanner.nextInt();
 
-            switch(choice) {
+                switch (choice) {
 
-                case 1:
-                    Order order = new Order();
-                    showOrderScreen(order);
-                    break;
+                    case 1:
+                        Order order = new Order();
+                        showOrderScreen(order);
+                        break;
 
-                case 0:
-                    ordering = false;
-                    System.out.println("Goodbye.");
-                    break;
+                    case 0:
+                        ordering = false;
+                        System.out.println("Goodbye.");
+                        break;
 
-                default:
-                    System.out.println("Invalid option.");
+                    default:
+                        System.out.println("Invalid option.");
 
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid input.");
+                scanner.nextLine();
             }
         }
     }
@@ -99,19 +104,12 @@ public class UserInterface {
             int sizeChoice = scanner.nextInt();
             scanner.nextLine();
 
-            switch (sizeChoice) {
-                case 1:
-                    size = Size.PERSONAL;
-                    break;
-                case 2:
-                    size = Size.MEDIUM;
-                    break;
-                case 3:
-                    size = Size.LARGE;
-                    break;
-                default:
-                    size = Size.PERSONAL;
-            }
+            size = switch (sizeChoice) {
+                case 1 -> Size.PERSONAL;
+                case 2 -> Size.MEDIUM;
+                case 3 -> Size.LARGE;
+                default -> Size.PERSONAL;
+            };
         } catch (Exception e) {
             System.out.println("Not valid option");
             scanner.nextLine();
@@ -166,110 +164,115 @@ public class UserInterface {
             System.out.println("Enter Number: ");
 
             // KEEP ADDING TRY CATCHES
-            int toppingChoice = scanner.nextInt();
+            try {
+                int toppingChoice = scanner.nextInt();
 
-            switch(toppingChoice) {
-                case 1:
-                    pizza.addTopping(
-                            new Topping(
-                                    "Pepperoni",
-                                    Topping.Type.MEAT,
-                                    askExtra()
-                            )
-                    );
-                    break;
-                case 2:
-                    pizza.addTopping(
-                            new Topping(
-                                    "Sausage",
-                                    Topping.Type.MEAT,
-                                    askExtra()
-                            )
-                    );
-                    break;
-                case 3:
-                    pizza.addTopping(
-                            new Topping(
-                                    "Ham",
-                                    Topping.Type.MEAT,
-                                    askExtra()
-                            )
-                    );
-                    break;
-                case 4:
-                    pizza.addTopping(
-                            new Topping(
-                                    "Chicken",
-                                    Topping.Type.MEAT,
-                                    askExtra()
-                            )
-                    );
-                    break;
-                case 5:
-                    pizza.addTopping(
-                            new Topping(
-                                    "Mozzarella",
-                                    Topping.Type.CHEESE,
-                                    askExtra()
-                            )
-                    );
-                    break;
-                case 6:
-                    pizza.addTopping(
-                            new Topping(
-                                    "Parmesan",
-                                    Topping.Type.CHEESE,
-                                    askExtra()
-                            )
-                    );
-                    break;
-                case 7:
-                    pizza.addTopping(
-                            new Topping(
-                                    "Bell Peppers",
-                                    Topping.Type.REGULAR,
-                                    askExtra()
-                            )
-                    );
-                    break;
-                case 8:
-                    pizza.addTopping(
-                            new Topping(
-                                    "Pineapple",
-                                    Topping.Type.REGULAR,
-                                    askExtra()
-                            )
-                    );
-                    break;
-                case 9:
-                    pizza.addTopping(
-                            new Topping(
-                                    "Marinara",
-                                    Topping.Type.SAUCE,
-                                    askExtra()
-                            )
-                    );
-                    break;
-                case 10:
-                    pizza.addTopping(
-                            new Topping(
-                                    "Red Pepper Flakes",
-                                    Topping.Type.SIDE,
-                                    askExtra()
-                            )
-                    );
-                    break;
+                switch (toppingChoice) {
+                    case 1:
+                        pizza.addTopping(
+                                new Topping(
+                                        "Pepperoni",
+                                        Topping.Type.MEAT,
+                                        askExtra()
+                                )
+                        );
+                        break;
+                    case 2:
+                        pizza.addTopping(
+                                new Topping(
+                                        "Sausage",
+                                        Topping.Type.MEAT,
+                                        askExtra()
+                                )
+                        );
+                        break;
+                    case 3:
+                        pizza.addTopping(
+                                new Topping(
+                                        "Ham",
+                                        Topping.Type.MEAT,
+                                        askExtra()
+                                )
+                        );
+                        break;
+                    case 4:
+                        pizza.addTopping(
+                                new Topping(
+                                        "Chicken",
+                                        Topping.Type.MEAT,
+                                        askExtra()
+                                )
+                        );
+                        break;
+                    case 5:
+                        pizza.addTopping(
+                                new Topping(
+                                        "Mozzarella",
+                                        Topping.Type.CHEESE,
+                                        askExtra()
+                                )
+                        );
+                        break;
+                    case 6:
+                        pizza.addTopping(
+                                new Topping(
+                                        "Parmesan",
+                                        Topping.Type.CHEESE,
+                                        askExtra()
+                                )
+                        );
+                        break;
+                    case 7:
+                        pizza.addTopping(
+                                new Topping(
+                                        "Bell Peppers",
+                                        Topping.Type.REGULAR,
+                                        askExtra()
+                                )
+                        );
+                        break;
+                    case 8:
+                        pizza.addTopping(
+                                new Topping(
+                                        "Pineapple",
+                                        Topping.Type.REGULAR,
+                                        askExtra()
+                                )
+                        );
+                        break;
+                    case 9:
+                        pizza.addTopping(
+                                new Topping(
+                                        "Marinara",
+                                        Topping.Type.SAUCE,
+                                        askExtra()
+                                )
+                        );
+                        break;
+                    case 10:
+                        pizza.addTopping(
+                                new Topping(
+                                        "Red Pepper Flakes",
+                                        Topping.Type.SIDE,
+                                        askExtra()
+                                )
+                        );
+                        break;
 
-                case 0:
-                    adding = false;
-                    break;
+                    case 0:
+                        adding = false;
+                        break;
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid input");
+                scanner.nextLine();
             }
         }
-        return pizza;
+            return pizza;
     }
     public boolean askExtra() {
         System.out.println("Add extra of this topping?");
-        System.out.println("\"==========================\"");
+        System.out.println("==========================");
         System.out.println("1) YES");
         System.out.println("2) NO");
         System.out.println("Enter Number");
@@ -285,21 +288,13 @@ public class UserInterface {
 
         int choice = scanner.nextInt();
 
-        DrinkSize size;
+        DrinkSize size = switch (choice) {
+            case 1 -> DrinkSize.SMALL;
+            case 2 -> DrinkSize.MEDIUM;
+            case 3 -> DrinkSize.LARGE;
+            default -> DrinkSize.LARGE;
+        };
 
-        switch (choice) {
-            case 1:
-                size = DrinkSize.SMALL;
-                break;
-            case 2:
-                size = DrinkSize.MEDIUM;
-                break;
-            case 3:
-                size = DrinkSize.LARGE;
-                break;
-            default:
-                size = DrinkSize.LARGE;
-        }
         scanner.nextLine();
         System.out.println("Enter flavor: ");
         String flavor = scanner.nextLine();

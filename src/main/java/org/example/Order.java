@@ -43,25 +43,22 @@ public class Order {
         return total;
     }
     public String formatReceipt() {
-        String receipt = "";
+        StringBuilder receipt = new StringBuilder();
 
-        receipt += "==== ORDER RECEIPT ====\n\n";
+        receipt.append("==== ORDER RECEIPT ====\n\n");
 
         for(Pizza p : pizzas) {
-            receipt += p + "\n\n";
+            receipt.append(p).append("\n\n");
         }
         for(Drink d : drinks) {
-            receipt += d + "\n\n";
+            receipt.append(d).append("\n\n");
         }
         if (garlicKnots > 0) {
-            receipt += "Garlic Knots x" + garlicKnots;
-            receipt += " = $" +
-                    String.format("%.2f", garlicKnots * 1.50)
-                    + "\n";
+            receipt.append("Garlic Knots x").append(garlicKnots);
+            receipt.append(" = $").append(String.format("%.2f", garlicKnots * 1.50)).append("\n");
         }
-        receipt += "\nTOTAL: $" +
-                String.format("%.2f", calculateTotal());
+        receipt.append("\nTOTAL: $").append(String.format("%.2f", calculateTotal()));
 
-        return receipt;
+        return receipt.toString();
     }
 }

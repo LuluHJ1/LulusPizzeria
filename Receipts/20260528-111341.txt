@@ -1,0 +1,10 @@
+==== ORDER RECEIPT ====
+
+PERSONAL Pizza
+Stuffed Crust
+Toppings:
+- Bell Peppers
+Price: $8.5
+
+
+TOTAL: $8.50
