@@ -3,6 +3,9 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.example.UserInterface.GREEN;
+import static org.example.UserInterface.RESET;
+
 public class Order {
 
     private List<Pizza> pizzas = new ArrayList<>();
@@ -45,7 +48,7 @@ public class Order {
     public String formatReceipt() {
         StringBuilder receipt = new StringBuilder();
 
-        receipt.append("==== ORDER RECEIPT ====\n\n");
+        receipt.append(GREEN + "==== ORDER RECEIPT ====" + RESET);
 
         for(Pizza p : pizzas) {
             receipt.append(p).append("\n\n");
@@ -57,6 +60,7 @@ public class Order {
             receipt.append("Garlic Knots x").append(garlicKnots);
             receipt.append(" = $").append(String.format("%.2f", garlicKnots * 1.50)).append("\n");
         }
+
         receipt.append("\nTOTAL: $").append(String.format("%.2f", calculateTotal()));
 
         return receipt.toString();

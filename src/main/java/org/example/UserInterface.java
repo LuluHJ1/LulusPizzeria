@@ -4,13 +4,16 @@ import java.util.Scanner;
 
 public class UserInterface {
     Scanner scanner = new Scanner(System.in);
-
+    public static final String RESET = "\u001B[0m";
+    public static final String BLUE = "\u001B[34m";
+    public static final String RED = "\u001B[31m";
+    public static final String GREEN = "\u001B[32m";
     public void display() {
 
         boolean ordering = true;
         while (ordering) {
-            System.out.println("WELCOME TO LULU'S PIZZERIA");
-            System.out.println("==========================");
+            System.out.println(BLUE + "WELCOME TO LULU'S PIZZERIA");
+            System.out.println("==========================" + RESET);
             System.out.println("1) New Order");
             System.out.println("0) Exit");
             System.out.println("Enter Number: ");
@@ -27,15 +30,15 @@ public class UserInterface {
 
                     case 0:
                         ordering = false;
-                        System.out.println("Goodbye.");
+                        System.out.println(BLUE + "Goodbye." + RESET);
                         break;
 
                     default:
-                        System.out.println("Invalid option.");
+                        System.out.println(RED + "Invalid option." + RESET);
 
                 }
             } catch (Exception e) {
-                System.out.println("Invalid input.");
+                System.out.println(RED + "Invalid input." + RESET);
                 scanner.nextLine();
             }
         }
@@ -46,8 +49,8 @@ public class UserInterface {
 
         while (ordering) {
 
-            System.out.println("ORDER SCREEN");
-            System.out.println("==========================");
+            System.out.println(BLUE + "ORDER SCREEN");
+            System.out.println("==========================" + RESET);
             System.out.println("1) Add Pizza");
             System.out.println("2) Add Drink");
             System.out.println("3) Add Garlic Knots");
@@ -63,28 +66,30 @@ public class UserInterface {
                     case 1:
                         Pizza pizza = buildPizza();
                         order.addPizza(pizza);
+                        System.out.println(GREEN + "Pizza added." + RESET);
                         break;
                     case 2:
                         Drink drink = buildDrink();
                         order.addDrink(drink);
+                        System.out.println(GREEN + "Drink added." + RESET);
                         break;
                     case 3:
                         addGarlicKnots(order);
-                        System.out.println("Garlic knots added.");
+                        System.out.println(GREEN + "Garlic knots added." + RESET);
                         break;
                     case 4:
                         checkout(order);
                         ordering = false;
                         break;
                     case 0:
-                        System.out.println("Order canceled.");
+                        System.out.println(BLUE + "Order canceled."+ RESET);
                         ordering = false;
                         break;
                     default:
-                        System.out.println("Invalid option");
+                        System.out.println(RED + "Invalid option" + RESET);
                 }
             } catch (Exception e) {
-                System.out.println("Please enter number.");
+                System.out.println(RED + "Please enter number." + RESET);
                 scanner.nextLine();
             }
         }
@@ -92,8 +97,8 @@ public class UserInterface {
 
     public Pizza buildPizza() {
 
-        System.out.println("\nSelect Pizza Size");
-        System.out.println("==========================");
+        System.out.println(BLUE + "Select Pizza Size");
+        System.out.println("==========================" + RESET);
         System.out.println("1) Personal");
         System.out.println("2) Medium");
         System.out.println("3) Large");
@@ -113,13 +118,13 @@ public class UserInterface {
                 default -> Size.PERSONAL;
             };
         } catch (Exception e) {
-            System.out.println("Not valid option");
+            System.out.println(RED + "Not valid option" + RESET);
             scanner.nextLine();
         }
         try {
 
-            System.out.println("Make it Stuffed Crust?");
-            System.out.println("==========================");
+            System.out.println(BLUE + "Make it Stuffed Crust?" );
+            System.out.println("==========================" + RESET);
             System.out.println("1) YES");
             System.out.println("2) NO");
             System.out.println("Enter Number: ");
@@ -133,32 +138,33 @@ public class UserInterface {
                 stuffedCrust = false;
             }
         } catch (Exception e) {
-            System.out.println("Invalid input.");
+            System.out.println(RED + "Invalid input." + RESET);
             scanner.nextLine();
         }
         Pizza pizza = new Pizza(size, stuffedCrust);
         boolean adding = true;
         while (adding) {
-            System.out.println("\nTOPPINGS: ");
-            System.out.println("==========================");
-            System.out.println("Meat: ");
+            System.out.println(BLUE + "TOPPINGS: ");
+            System.out.println("==========================" + RESET);
+            System.out.println();
+            System.out.println(GREEN + "Meat: " + RESET);
             System.out.println("1) Pepperoni");
             System.out.println("2) Sausage");
             System.out.println("3) Ham");
             System.out.println("4) Chicken");
             System.out.println();
-            System.out.println("Premium Cheeses: ");
+            System.out.println(GREEN+ "Premium Cheeses: " + RESET);
             System.out.println("5) Mozzarella");
             System.out.println("6) Parmesan");
             System.out.println();
-            System.out.println("Regular toppings (free): ");
+            System.out.println(GREEN + "Regular toppings (free): " + RESET);
             System.out.println("7) Bell Peppers");
             System.out.println("8) Pineapple");
             System.out.println();
-            System.out.println("Sauces (free)");
+            System.out.println(GREEN + "Sauces (free)" + RESET);
             System.out.println("9) Marinara Sauce");
             System.out.println();
-            System.out.println("Condiments(free)");
+            System.out.println(GREEN + "Condiments(free)" + RESET);
             System.out.println("10) Red Pepper Flakes");
             System.out.println();
             System.out.println("0) Done");
@@ -266,7 +272,7 @@ public class UserInterface {
                         break;
                 }
             } catch (Exception e) {
-                System.out.println("Invalid input");
+                System.out.println(RED + "Invalid input" + RESET);
                 scanner.nextLine();
             }
         }
@@ -276,8 +282,8 @@ public class UserInterface {
     public boolean askExtra() {
 
         while (true) {
-            System.out.println("Add extra of this topping?");
-            System.out.println("==========================");
+            System.out.println(BLUE + "Add extra of this topping?");
+            System.out.println("==========================" + RESET);
             System.out.println("1) YES");
             System.out.println("2) NO");
             System.out.println("Enter Number");
@@ -291,19 +297,19 @@ public class UserInterface {
                 } else if (choice == 2) {
                     return false;
                 } else {
-                    System.out.println("Invalid option.");
+                    System.out.println(RED + "Invalid option." + RESET);
                 }
 
             } catch (Exception e) {
-                System.out.println("Invalid input");
+                System.out.println(RED + "Invalid input" + RESET);
                 scanner.nextLine();
             }
         }
     }
 
     public Drink buildDrink() {
-        System.out.println("\nSelect Drink Size");
-        System.out.println("==========================");
+        System.out.println(BLUE + "Select Drink Size");
+        System.out.println("==========================" + RESET);
         System.out.println("1) Small");
         System.out.println("2) Medium");
         System.out.println("3) Large");
@@ -320,21 +326,20 @@ public class UserInterface {
                 default -> DrinkSize.LARGE;
             };
 
-            scanner.nextLine();
-            System.out.println("Enter flavor: ");
+            System.out.println(BLUE + "Enter flavor: " + RESET);
             String flavor = scanner.nextLine();
 
             return new Drink(flavor, size);
 
         } catch (Exception e) {
-            System.out.println("Invalid input. Defaulting to large.");
+            System.out.println(RED + "Invalid input. Defaulting to large." + RESET);
             scanner.nextLine();
             return new Drink("Unknown flavor", DrinkSize.LARGE);
         }
     }
         public void addGarlicKnots(Order order) {
-            System.out.println("GARLIC KNOTS");
-            System.out.println("==========================");
+            System.out.println(BLUE + "GARLIC KNOTS");
+            System.out.println("==========================" + RESET);
             System.out.println("How many orders of garlic knots?");
 
             try {
@@ -344,10 +349,10 @@ public class UserInterface {
                 if(quantity > 0) {
                     order.addGarlicKnots(quantity);
                 }else {
-                    System.out.println("Quantity must be positive");
+                    System.out.println(RED + "Quantity must be positive" + RESET);
                 }
             } catch (Exception e) {
-                System.out.println("Invalid input.");
+                System.out.println(RED + "Invalid input." + RESET);
                 scanner.nextLine();
             }
         }
@@ -356,8 +361,8 @@ public class UserInterface {
         boolean checkingOut = true;
 
         while (checkingOut) {
-            System.out.println("CHECKOUT");
-            System.out.println("==========================");
+            System.out.println(BLUE + "CHECKOUT");
+            System.out.println("==========================" + RESET);
             System.out.println(order.formatReceipt());
 
             System.out.println("1) Confirm");
@@ -374,7 +379,7 @@ public class UserInterface {
                 System.out.println("Order Canceled");
                 checkingOut = false;
             } else {
-                System.out.println("Not valid option");
+                System.out.println(RED + "Not valid option" + RESET);
             }
         }
     }
