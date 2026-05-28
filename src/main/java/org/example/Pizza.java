@@ -6,12 +6,16 @@ import java.util.List;
 public class Pizza {
     private Size size;
     private boolean stuffedCrust;
+    private CrustType crustType;
     private List<Topping> toppings = new ArrayList<>();
 
     public Pizza(Size size, boolean stuffedCrust) {
         this.size = size;
         this.stuffedCrust = stuffedCrust;
 
+    }
+    public void setCrustType(CrustType crustType) {
+        this.crustType = crustType;
     }
 
     public void addTopping(Topping topping) {
@@ -37,23 +41,23 @@ public class Pizza {
     }
     @Override
     public String toString() {
-        String result = "";
-        result += size + " Pizza\n";
+        StringBuilder result = new StringBuilder();
+        result.append(size).append(" Pizza\n");
 
         if (stuffedCrust) {
-            result += "Stuffed Crust\n";
+            result.append("Stuffed Crust\n");
         }
-        result += "Toppings:\n";
+        result.append("Toppings:\n");
 
         for (Topping  t : toppings) {
-            result += "- " + t.getName();
+            result.append("- ").append(t.getName());
 
             if (t.isExtra()) {
-                result += "(extra)";
+                result.append("(extra)");
             }
-            result += "\n";
+            result.append("\n");
         }
-            result += "Price: $" + calculatePrice();
-            return result;
+            result.append("Price: $").append(calculatePrice());
+            return result.toString();
     }
 }
